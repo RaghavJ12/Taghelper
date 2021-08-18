@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Layout from './dashlay';
+import LayoutDash from './dashlay';
 import Image from 'next/image';
 import logo from '../public/images/fb-w.png'
 import { useSession, signOut } from 'next-auth/client';
@@ -17,7 +17,7 @@ export default function Dashside() {
             <div className="card has-text-centered" id="s2">
                 <div className="sidex py-4"><Image src={logo} height={45} width={50} /></div>
 
-                <Layout />
+                <LayoutDash />
 
                 <div className="us py-5">
                     <Image
@@ -82,4 +82,14 @@ export default function Dashside() {
             </Modal>
         </>
     )
+}
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+
+    return {
+        props: {
+            session
+        }
+    }
 }
