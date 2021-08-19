@@ -1,10 +1,9 @@
 import React from 'react';
-import { signin, signIn } from 'next-auth/client';
+import { signIn } from 'next-auth/client';
 import logo from '../public/images/fb.jpg'
 import Image from 'next/image'
 
 export default function Login() {
-
   return (
     <div className="wel" style={{ backgroundColor: '#004e96' }}>      
       <div className="columns" style={{marginTop: '20vh'}}>
@@ -20,7 +19,7 @@ export default function Login() {
             <p className="is-size-2 has-text-centered" style={{ color: '#004e96' }}>Welcome to FB Helper</p>
             <br />
             <br />
-            <button className="button is-rounded has-text-weight-semibold is-large" id="b1" onClick={signin}>Login using Facebook</button>
+            <button className="button is-rounded has-text-weight-semibold is-large" id="b1" onClick={signIn}>Login using Facebook</button>
           </div>
         </div>
       </div>
