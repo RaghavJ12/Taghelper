@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Router from 'next/router'
 import Link from 'next/link';
 import Image from 'next/image'
 import user1pic from '../public/images/user1.png'
@@ -71,7 +72,7 @@ export default function Home() {
                   Conversations
                 </div>
                 <div className="column is-2 is-offset-1 mt-2">
-                  <button className="redo"><Link href="./inbox"><i className="px-1 r1" style={{ color: '#8a8989' }}><RefreshIcon /></i></Link></button>
+                  <button className="redo"><Link href="./"><i className="px-1 r1" style={{ color: '#8a8989' }}><RefreshIcon onclick={() => Router.reload(window.location.pathname)}/></i></Link></button>
                 </div>
               </div>
             </div>
@@ -80,6 +81,7 @@ export default function Home() {
                 <SearchIcon className="" fontSize="small"/>
                 <SearchInput placeholder="Search in chats" />
               </Search>
+              
             </SearchCon>
             <div className="columns is-gapless is-multiline card cbt is-fullwidth" style={{ borderRadius: '0' }}>
               {data.map((n) => {

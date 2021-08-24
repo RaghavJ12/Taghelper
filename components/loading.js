@@ -1,10 +1,15 @@
 import React from 'react';
-import { Circle } from 'better-react-spinkit';
+import { BounceLoader } from 'react-spinners';
 
 export default function Loading() {
     return (
-        <center style={{display: 'grid', placeitems: 'center', height: '100vh'}}>
-            <Circle color="blue" size={60} />
-        </center>
+        <>
+            <center className="cen">
+                <BounceLoader color="#004e96" size={120} />
+            </center>
+            <center className="centext is-size-4" style={{color: '#004e96'}}>
+                Please wait while we load Tag-Helper for you...
+            </center>
+        </>
     )
 }
