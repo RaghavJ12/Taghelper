@@ -5,11 +5,14 @@ import { Provider } from 'next-auth/client'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider session={pageProps.session}>
-      {/* <Layout> */}
+    <>
+      <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+      <Provider session={pageProps.session}>
+        {/* <Layout> */}
         <Component {...pageProps} />
-      {/* </Layout> */}
-    </Provider>
+        {/* </Layout> */}
+      </Provider>
+    </>
   )
 }
 

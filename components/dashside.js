@@ -13,7 +13,6 @@ export default function Dashside() {
 
     return (
         <>
-            <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
             <div className="card has-text-centered" id="s2">
                 <div className="sidex py-4"><Image src={logo} height={45} width={50} /></div>
 
