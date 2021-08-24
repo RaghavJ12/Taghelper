@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import LayoutDash from './dashlay';
 import Image from 'next/image';
 import logo from '../public/images/fb-w.png'
-import { useSession, signOut } from 'next-auth/client';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useSession} from 'next-auth/client';
+import FirebaseUser from 'firebase';
+import { auth, provider } from '../firebase';
 import { Modal, ModalBody, ModalFooter } from "reactstrap";
 
 export default function Dashside() {
 
-    const [sess] = useSession();
-    const MyImage = sess.user.image;
     const [modalOpen, setModalOpen] = useState(false);
+    
+    const [user]=useAuthState(auth);
+    const MyImage = user.photoURL;
 
     return (
         <>
@@ -21,7 +25,7 @@ export default function Dashside() {
 
                 <div className="us py-5">
                     <Image
-                        src={MyImage}
+                        src={logo}
                         onClick={() => setModalOpen(!modalOpen)}
                         className="cp"
                         alt="user3"
@@ -46,10 +50,11 @@ export default function Dashside() {
                         <div className="columns is-mobile is-multiline is-gapless">
                             <div className="column is-4 is-offset-4">
                                 <div className="gradient-avatar">
-                                    <Image className="gradient-avatar__image" src={MyImage} width={130} height={130} /></div>
+                                    {/* <Image className="gradient-avatar__image" loader={user.photoURL} width={130} height={130} /> */}
+                                </div>
                             </div>
                             <div className="column is-6 is-offset-3 has-text-centered">
-                                <p className="has-text-weight-semibold is-size-5 py-2">{sess.user.name}</p>
+                                <p className="has-text-weight-semibold is-size-5 py-2">{user.displayName}</p>
                             </div>
                             <div className="column is-6 is-offset-3 has-text-centered"><p className="is-size-6" style={{ color: 'green' }}><i className="fas fa-circle icon is-small pr-2"></i>Online</p></div>
                         </div>
@@ -71,7 +76,7 @@ export default function Dashside() {
                                 </button>
                             </div>
                             <div className="column is-6 has-text-centered">
-                                <button className="button is-medium" id="so" style={{ minWidth: '8vw' }} onClick={signOut}>
+                                <button className="button is-medium" id="so" style={{ minWidth: '8vw' }} onClick={() => auth.signOut()}>
                                     Yes
                                 </button>
                             </div>

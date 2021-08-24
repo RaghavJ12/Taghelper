@@ -1,9 +1,16 @@
 import React from 'react';
-import { signIn } from 'next-auth/client';
+import { auth, provider } from '../firebase';
 import logo from '../public/images/fb.jpg'
 import Image from 'next/image'
 
 export default function Login() {
+
+  const signIn=() =>{
+    auth.signInWithPopup(provider).catch(alert).then((result) => {
+      console.log(result.user.displayName);
+    });
+  };
+
   return (
     <div className="wel" style={{ backgroundColor: '#004e96' }}>      
       <div className="columns" style={{marginTop: '20vh'}}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
+import FontAwesome from 'react-fontawesome';
 
 export default function Layout() {
 
@@ -14,7 +15,7 @@ export default function Layout() {
             <>
                 <Link href="./">
                     <a>
-                        <div className="side py-5"><i className="fa fa-inbox icon is-medium" aria-hidden="true"></i></div>
+                        <div className="side py-5"></div>
                     </a>
                 </Link>
                 <Link href="./friends">
@@ -56,6 +57,7 @@ export default function Layout() {
     else{
         return (
             <>
+            <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
                 <Link href="./">
                     <a>
                         <div className="act py-5"><i className="fa fa-inbox icon is-medium" aria-hidden="true"></i></div>
@@ -63,12 +65,12 @@ export default function Layout() {
                 </Link>
                 <Link href="./friends">
                     <a>
-                        <div className="side py-5"><i className="fa fa-user-friends icon is-medium" aria-hidden="true"></i></div>
+                        <div className="side py-5"><i class="fas fa-phone"></i></div>
                     </a>
                 </Link>
                 <Link href="./analytics">
                     <a>
-                        <div className="side py-5"><i className="fa fa-chart-line icon is-medium" aria-hidden="true"></i></div>
+                        <div className="side py-5"><i className="fas fa-chart-line icon is-medium" aria-hidden="true"></i></div>
                     </a>
                 </Link>
             </>
