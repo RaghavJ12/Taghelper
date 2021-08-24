@@ -1,7 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import FontAwesome from 'react-fontawesome';
+import styled from 'styled-components'
+import InboxIcon from '@material-ui/icons/Inbox';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
 export default function Layout() {
 
@@ -15,17 +18,17 @@ export default function Layout() {
             <>
                 <Link href="./">
                     <a>
-                        <div className="side py-5"></div>
+                        <div className="side py-5"><InboxIcon fontSize="large"/></div>
                     </a>
                 </Link>
                 <Link href="./friends">
                     <a>
-                        <div className="act side py-5"><i className="fa fa-user-friends icon is-medium" aria-hidden="true"></i></div>
+                        <div className="act side py-5"><PeopleAltIcon fontSize="large"/></div>
                     </a>
                 </Link>
                 <Link href="./analytics">
                     <a>
-                        <div className="side py-5"><i className="fa fa-chart-line icon is-medium" aria-hidden="true"></i></div>
+                        <div className="side py-5"><TrendingUpIcon fontSize="large"/></div>
                     </a>
                 </Link>
             </>
@@ -37,43 +40,46 @@ export default function Layout() {
             <>
                 <Link href="./">
                     <a>
-                        <div className="side py-5"><i className="fa fa-inbox icon is-medium" aria-hidden="true"></i></div>
+                        <div className="side py-5"><InboxIcon fontSize="large"/></div>
                     </a>
                 </Link>
                 <Link href="./friends">
                     <a>
-                        <div className="side py-5"><i className="fa fa-user-friends icon is-medium" aria-hidden="true"></i></div>
+                        <div className="side py-5"><PeopleAltIcon fontSize="large"/></div>
                     </a>
                 </Link>
                 <Link href="./analytics">
                     <a>
-                        <div className="act side py-5"><i className="fa fa-chart-line icon is-medium" aria-hidden="true"></i></div>
+                        <div className="act side py-5"><TrendingUpIcon fontSize="large"/></div>
                     </a>
                 </Link>
             </>
         )
     }
 
-    else{
+    else {
         return (
             <>
-            <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-                <Link href="./">
-                    <a>
-                        <div className="act py-5"><i className="fa fa-inbox icon is-medium" aria-hidden="true"></i></div>
-                    </a>
-                </Link>
-                <Link href="./friends">
-                    <a>
-                        <div className="side py-5"><i class="fas fa-phone"></i></div>
-                    </a>
-                </Link>
-                <Link href="./analytics">
-                    <a>
-                        <div className="side py-5"><i className="fas fa-chart-line icon is-medium" aria-hidden="true"></i></div>
-                    </a>
-                </Link>
+                <Container>
+                    <Link href="./">
+                        <a>
+                            <div className="act py-5"><InboxIcon fontSize="large"/></div>
+                        </a>
+                    </Link>
+                    <Link href="./friends">
+                        <a>
+                            <div className="side py-5"><PeopleAltIcon fontSize="large"/></div>
+                        </a>
+                    </Link>
+                    <Link href="./analytics">
+                        <a>
+                            <div className="side py-5"><TrendingUpIcon fontSize="large"/></div>
+                        </a>
+                    </Link>
+                </Container>
             </>
         )
     }
 }
+
+const Container = styled.div``;

@@ -4,7 +4,13 @@ import Image from 'next/image'
 import user1pic from '../public/images/user1.png'
 import user2pic from '../public/images/user2.jpg'
 import Dashside from '../components/dashside';
-import { getSession } from 'next-auth/client';
+import PersonIcon from '@material-ui/icons/Person';
+import styled from 'styled-components'
+import PhoneIcon from '@material-ui/icons/Phone';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import SubjectIcon from '@material-ui/icons/Subject';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import SearchIcon from '@material-ui/icons/Search';
 
 const data = [
   {
@@ -53,25 +59,28 @@ export default function Home() {
   //   return <Login />;
 
   return (
-    <>
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <Container>
       <Dashside />
       <div className="columns is-gapless is-mobile" style={{ marginLeft: '82px' }}>
         <div className="column is-3">
           <div className="card" style={{ height: '100vh' }}>
             <div className="card p-3" style={{ borderRadius: '0' }}>
               <div className="columns is-gapless mx-2">
-                <div className="column is-1" style={{ color: '#C0C0C0' }}>
-                  <i className=" mt-3 fas fa-align-left icon"></i>
-                </div>
                 <div className="column is-size-4 mt-1 has-text-weight-bold">
+                  <i className="mr-3" style={{ color: '#C0C0C0' }}><SubjectIcon /></i>
                   Conversations
                 </div>
                 <div className="column is-2 is-offset-1 mt-2">
-                  <button className="redo"><Link href="./inbox"><i className="fas fa-redo-alt icon is-medium px-1 r1" style={{ color: '#8a8989' }}></i></Link></button>
+                  <button className="redo"><Link href="./inbox"><i className="px-1 r1" style={{ color: '#8a8989' }}><RefreshIcon /></i></Link></button>
                 </div>
               </div>
             </div>
+            <SearchCon>
+              <Search className="py-4 px-4">
+                <SearchIcon className="" fontSize="small"/>
+                <SearchInput placeholder="Search in chats" />
+              </Search>
+            </SearchCon>
             <div className="columns is-gapless is-multiline card cbt is-fullwidth" style={{ borderRadius: '0' }}>
               {data.map((n) => {
                 return (
@@ -121,15 +130,15 @@ export default function Home() {
                 <p className="is-size-5 has-text-weight-bold has-text-centered" style={{ marginTop: '-20px' }}>{u2.fname} {u2.lname}</p>
               </div>
               <div className="column is-5 is-offset-5">
-                <p className="is-size-6 ml-2" style={{ marginTop: '-20px', color: col }}><i className="fas fa-circle icon is-small pr-2"></i>{u2.status}</p>
+                <p className="is-size-6" style={{ marginTop: '-20px', color: col, display: 'flex', position: 'sticky' }}><i className="pr-1 pt-1"><FiberManualRecordIcon fontSize="inherit" /></i>{u2.status}</p>
               </div>
             </div>
             <div className="columns is-mobile">
               <div className="column is-3 is-offset-3">
-                <button className="button"><span class="icon-phone-solid"></span>Call</button>
+                <button className="button bo"><i className="mr-2 pt-2"><PhoneIcon /></i>Call</button>
               </div>
               <div className="column is-3">
-                <button className="button"><i className="fas fa-user-circle icon mr-2" aria-hidden="true"></i>Profile</button>
+                <button className="button bo"><i className="mr-2 pt-2"><PersonIcon /></i>Profile</button>
               </div>
             </div>
           </div>
@@ -147,7 +156,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    </Container>
   )
 }
 
@@ -160,3 +169,25 @@ export default function Home() {
 //     }
 //   }
 // }
+const Container = styled.div``;
+const SearchCon = styled.div`
+display: 'flex';
+align-items: center;
+padding: 5px;
+border-radius: 2px;
+background-color: rgb(250, 250, 250);
+`;
+const Search = styled.div`
+outline-width: 0;
+border-radius: 25px;
+border-width: 0;
+flex:1;
+margin: 5px;
+background-color: white;
+`;
+const SearchInput = styled.input`
+outline-width: 0;
+border: none;
+flex:1;
+padding-left: 15px; 
+`;
