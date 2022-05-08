@@ -13,3 +13,6 @@ My Facebook account:
 
 Log Out:
 ![image](https://user-images.githubusercontent.com/50922572/167290794-5cfb4f57-cf04-4139-8947-09190f7287f8.png)
+
+The graph API:
+![image](https://user-images.githubusercontent.com/50922572/167290927-da58bea6-7d31-482c-acc9-0c8972dcdc41.png)
