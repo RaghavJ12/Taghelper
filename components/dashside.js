@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LayoutDash from './dashlay';
 import Image from 'next/image';
 import logo from '../public/images/fb-w.png'
@@ -7,13 +7,37 @@ import { auth, provider } from '../firebase';
 import { Modal, ModalBody, ModalFooter } from "reactstrap";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import CloseIcon from '@material-ui/icons/Close';
+import styled from 'styled-components'
+import { Avatar } from '@material-ui/core';
+import axios from "axios";
+import graph from 'fb-react-sdk';
 
 export default function Dashside() {
 
     const [modalOpen, setModalOpen] = useState(false);
 
     const [user] = useAuthState(auth);
-    const MyImage = user.photoURL;
+    const [access_token, setaccess_token] = useState("");
+    const [pic, setpic] = useState("");
+    // console.log(user);
+
+    useEffect(()=>{
+        // setaccess_token(user.accessToken);
+        setaccess_token("EAARavzQBmdwBAIjyBjDtAqTlxCwswscDuyuaCbD39ZBZBvhH6kw88fCIZAD6d43s7CbvKUHWy3DJ9tpa6VCicdfGi8HYbGq5C8GTlWt2eaWGApZCMZCpddkbu98l2yR8ZBrGAvHUVzkhVFMFsLfJ2RVb87ITzzDVNYw3cKMULlwgR5xHnJXf6UEoPYYKTz3hdw8xwy3HOvV0Tsun6CMZC3oQNTLb6hCkOZA43sZBiOYffh3vMUru6oZCKh");
+        graph.setAccessToken(access_token);
+        graph.extendAccessToken({
+            "client_id":      process.env.FACEBOOK_CLIENT_ID
+          , "client_secret":  process.env.FACEBOOK_CLIENT_SECRET
+        }, function (err, facebookRes) {
+        //    console.log(facebookRes);
+        });
+    
+        graph.get("me?fields=picture{cache_key,height,is_silhouette,url,width}", function (err, res) {
+            console.log(res);
+            setpic(res?.picture.data.url);
+        });
+    });
+
 
     return (
         <>
@@ -23,8 +47,8 @@ export default function Dashside() {
                 <LayoutDash />
 
                 <div className="us py-5">
-                    <Image
-                        src={logo}
+                    <UserAvatar
+                        src={pic}
                         onClick={() => setModalOpen(!modalOpen)}
                         className="cp"
                         alt="user3"
@@ -49,7 +73,7 @@ export default function Dashside() {
                         <div className="columns is-mobile is-multiline is-gapless">
                             <div className="column is-4 is-offset-4">
                                 <div className="gradient-avatar">
-                                    {/* <Image className="gradient-avatar__image" loader={user.photoURL} width={130} height={130} /> */}
+                                    <ShowAvatar className="gradient-avatar__image" src={pic} />
                                 </div>
                             </div>
                             <div className="column is-6 is-offset-3 has-text-centered">
@@ -97,3 +121,14 @@ export default function Dashside() {
 //         }
 //     }
 // }
+
+const UserAvatar = styled(Avatar)`
+margin-left: 20px;
+`;
+
+const ShowAvatar = styled(Avatar)`
+border-radius: 50%;
+z-index: 1;
+height: 15vh;
+width: 7vw;
+`;

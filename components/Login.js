@@ -7,7 +7,7 @@ export default function Login() {
 
   const signIn=() =>{
     auth.signInWithPopup(provider).catch(alert).then((result) => {
-      console.log(result.user.displayName);
+      console.log(result.user);
     });
   };
 

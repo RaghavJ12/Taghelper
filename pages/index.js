@@ -41,7 +41,7 @@ const data = [
 ]
 
 export default function Home() {
-
+  
   const [user, setuser] = useState(data[0]);
   const [u2, setu2] = useState(data[0]);
   const [col, setcol] = useState('#8a8989');
@@ -55,6 +55,19 @@ export default function Home() {
       setcol('#8a8989');
     }
   });
+  // const getPic = () => {
+  //   axios.get("https://graph.facebook.com/v11.0/me", {
+  //     access_token: ""
+  //   }).then(
+  //     res => {
+  //       // setpic(res.data);
+  //       console.log(res.data);
+  //     },
+  //     error => {
+  //       alert(error);
+  //     }
+  //   );
+  // };
 
   // if (!session)
   //   return <Login />;
@@ -72,16 +85,16 @@ export default function Home() {
                   Conversations
                 </div>
                 <div className="column is-2 is-offset-1 mt-2">
-                  <button className="redo"><Link href="./"><i className="px-1 r1" style={{ color: '#8a8989' }}><RefreshIcon onclick={() => Router.reload(window.location.pathname)}/></i></Link></button>
+                  <button className="redo"><Link href="./"><i className="px-1 r1" style={{ color: '#8a8989' }}><RefreshIcon onclick={() => Router.reload(window.location.pathname)} /></i></Link></button>
                 </div>
               </div>
             </div>
             <SearchCon>
               <Search className="py-4 px-4">
-                <SearchIcon className="" fontSize="small"/>
+                <SearchIcon className="" fontSize="small" />
                 <SearchInput placeholder="Search in chats" />
               </Search>
-              
+
             </SearchCon>
             <div className="columns is-gapless is-multiline card cbt is-fullwidth" style={{ borderRadius: '0' }}>
               {data.map((n) => {
@@ -158,19 +171,11 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* <div className="button" onClick={getPic} /> */}
     </Container>
   )
 }
 
-// export async function getServerSideProps(context) {
-//   const session = await getSession(context);
-
-//   return {
-//     props: {
-//       session
-//     }
-//   }
-// }
 const Container = styled.div``;
 const SearchCon = styled.div`
 display: 'flex';
